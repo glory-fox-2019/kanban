@@ -1,0 +1,3 @@
+VUE_APP_APIKEY="your firebase apikey"
+VUE_APP_AUTHDOMAIN="your firebase authdomain"
+VUE_APP_PROJECTID="your firebase projectID"

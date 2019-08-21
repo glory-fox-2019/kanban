@@ -2,6 +2,7 @@
   <div id="app">
     <Navbar></Navbar>
     <b-container fluid>
+      <h5>Note: Drag card to update your status</h5>
       <b-row style="margin-top: 30px;" >
         <Cardparent v-for="job in jobStatus" :key="job" :status="job"></Cardparent>
       </b-row>
