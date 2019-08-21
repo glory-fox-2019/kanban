@@ -1,0 +1,108 @@
+$radius: 10px;
+$radius-mini: 7px;
+$blue: rgb(0, 109, 233);
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+body{
+  // background-image: url('http://picsum.photos/1920/1080');
+  height: 100vh;
+}
+#app{
+  padding: 20px;
+}
+.card{
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  background: white;
+  border-radius: $radius;
+  margin-bottom: 20px;
+  .card--title{
+    border-top-right-radius: $radius;
+    border-top-left-radius: $radius;
+    padding: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #ccc;
+  }
+  .card--action{
+    .card--action--add--trigger{
+      padding: 10px;
+      button{
+        width: 100%;
+        background-color: #eee;
+        padding: 10px;
+        color: #888;
+        border:0;
+        cursor: pointer;
+        border-radius: $radius-mini;
+      }
+      button:active{
+        outline: 0;
+      }
+    }
+    .card--action--add{
+      input[type=text],textarea{
+        resize: none;
+        width: 100%;
+        box-sizing: border-box;
+        border: 0;
+        background: transparent;
+        padding: 10px;
+        font-size: 16px;
+        border-bottom: 1px solid #ccc;
+      }
+      input[type=submit]{
+        margin: 10px;
+        border: 0;
+        border-radius: $radius-mini;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        background-color: $blue;
+      }
+    }
+  }
+  .card--content{
+    padding: 10px;
+    padding-bottom: 40px;
+  }
+  .task{
+    margin-bottom: 10px;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: $radius-mini;
+    padding: 10px;
+    .task--title{
+      font-size: 22px;
+      font-weight: bold;
+      padding-bottom: 10px;
+    }
+    .task--description{
+      overflow:hidden;
+      max-height: 250px;
+    }
+    .task--asign-to{
+      color: #888;
+    }
+    .task--action{
+      display: flex;
+      justify-content: end;
+      a{
+        color: $blue;
+        text-decoration: none;
+        outline: 0;
+        
+      }
+    }
+  }
+}
+.col{
+  box-sizing: border-box;
+  padding: 10px;
+  float: left;
+  width: 25%;
+}
