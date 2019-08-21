@@ -1,0 +1,76 @@
+[debug] [2019-08-21T14:43:59.059Z] ----------------------------------------------------------------------
+[debug] [2019-08-21T14:43:59.061Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2019-08-21T14:43:59.062Z] CLI Version:   7.2.4
+[debug] [2019-08-21T14:43:59.062Z] Platform:      darwin
+[debug] [2019-08-21T14:43:59.062Z] Node Version:  v10.15.3
+[debug] [2019-08-21T14:43:59.063Z] Time:          Wed Aug 21 2019 21:43:59 GMT+0700 (Western Indonesia Time)
+[debug] [2019-08-21T14:43:59.063Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-08-21T14:43:59.071Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-08-21T14:43:59.071Z] > authorizing via signed-in user
+[debug] [2019-08-21T14:43:59.071Z] [iam] checking project kanban-5c41c for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-08-21T14:43:59.073Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/kanban-5c41c:testIamPermissions  
+
+[debug] [2019-08-21T14:44:00.335Z] <<< HTTP RESPONSE 200
+[debug] [2019-08-21T14:44:00.338Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/kanban-5c41c  
+ 
+[debug] [2019-08-21T14:44:00.632Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'kanban-5c41c'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-08-21T14:44:00.636Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/kanban-5c41c/versions  
+
+[debug] [2019-08-21T14:44:02.031Z] <<< HTTP RESPONSE 500
+[debug] [2019-08-21T14:44:02.031Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 500, Internal error encountered.
+[debug] [2019-08-21T14:44:02.126Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 500,
+      "message": "Internal error encountered.",
+      "status": "INTERNAL"
+    }
+  },
+  "response": {
+    "statusCode": 500,
+    "body": {
+      "error": {
+        "code": 500,
+        "message": "Internal error encountered.",
+        "status": "INTERNAL"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Wed, 21 Aug 2019 14:44:01 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "0",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"46,43,39\"",
+      "accept-ranges": "none",
+      "transfer-encoding": "chunked"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/kanban-5c41c/versions",
+        "path": "/v1beta1/sites/kanban-5c41c/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/kanban-5c41c/versions"
+      },
+      "method": "POST"
+    }
+  }
+}
