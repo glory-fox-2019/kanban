@@ -57,9 +57,9 @@ export default {
   methods: {
     createNewTask () {
       // console.log("aselole");
-       Vue.swal.fire({
-                title: 'Creating your task...',
-                allowOutsideClick: () => !Swal.isLoading()
+      Vue.swal.fire({
+        title: 'Creating your task...',
+        allowOutsideClick: () => !Vue.swal.isLoading()
       })
       Vue.swal.showLoading()
 
@@ -73,16 +73,16 @@ export default {
         .add(newTask)
         .then(ref => {
           console.log('Added document with ID: ', ref.id)
-          this.$bvModal.hide("modal-task")
-           this.title=""
-           this.description=""
-           this.assigned =""
+          this.$bvModal.hide('modal-task')
+          this.title = ''
+          this.description = ''
+          this.assigned = ''
           Vue.swal.close()
-           Vue.swal.fire({
-                    type: 'success',
-                    title: 'You Have Created task !',
-                    showConfirmButton: false,
-                    timer: 1500
+          Vue.swal.fire({
+            type: 'success',
+            title: 'You Have Created task !',
+            showConfirmButton: false,
+            timer: 1500
           })
         })
     }

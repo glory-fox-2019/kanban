@@ -6,12 +6,12 @@
       <small class="card-text">Assigned To : {{theTask.assigned}}</small>
       <br>
       <br>
-      <div class="card-footer" style="display:flex;justify-content:space-around;">
-        <button v-if="theTask.status!=0" @click="previousTask(theTask)" class="btn btn-primary btn-sm">previous</button>
+      <div class="card-footer" style="display:flex;justify-content:space-between;">
+        <button v-if="theTask.status!=0" @click="previousTask(theTask)" class="btn btn-primary btn-sm">prev</button>
         <button class="btn btn-primary btn-sm" @click=deleteTask(theTask.id)>delete</button>
         <button v-if="theTask.status!=3" @click="nextTask(theTask)" class="btn btn-primary btn-sm">next</button>
       </div>
-        
+
     </div>
   </div>
 </template>
@@ -26,54 +26,50 @@ export default {
   },
   methods: {
     deleteTask (id) {
-      
-
       Vue.swal.fire({
-        title: "Are you sure?",
+        title: 'Are you sure?',
         text: "You won't be able to revert this!",
-        type: "warning",
+        type: 'warning',
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
-      }).then(result=>{
-
-        if(result.value){
-        db.collection('task').doc(id).delete()
-        .then(success => {
-          console.log(success)
-        })
-        .catch(err => {
-          console.log(err)
-        })
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(result => {
+        if (result.value) {
+          db.collection('task').doc(id).delete()
+            .then(success => {
+              console.log(success)
+            })
+            .catch(err => {
+              console.log(err)
+            })
         }
       })
-    
+
       // console.log(id)
     },
-    nextTask(task){
+    nextTask (task) {
       let id = task.id
       let status = task.status
-      
-      if(status<=4){
-        status+=1
+
+      if (status <= 4) {
+        status += 1
       }
 
       db.collection('task').doc(id)
-      .update({status})
+        .update({ status })
     },
 
-    previousTask(task){
+    previousTask (task) {
       let id = task.id
       let status = task.status
-      
-      if(status>0){
-        status-=1
+
+      if (status > 0) {
+        status -= 1
       }
 
       db.collection('task').doc(id)
-      .update({status})
-
+        .update({ status })
     }
   }
 }
