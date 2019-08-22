@@ -16,6 +16,7 @@
 import Card from './Card.vue'
 import db from '../apis/firebase'
 import draggable from 'vuedraggable'
+import Swal from 'sweetalert2'
 export default {
   props: {
     status: String
@@ -46,8 +47,13 @@ export default {
       }
     },
     fetchTask () {
+      Swal.fire({
+        title: 'please wait...'
+      })
+      Swal.showLoading()
       db.collection('Kanban').where('status' , "==", this.status)
       .onSnapshot(snapshot => {
+        Swal.close()
         this.arrayOfJob = []
         snapshot.forEach(doc => {
           const data = doc.data();
