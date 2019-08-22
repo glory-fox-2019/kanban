@@ -4,7 +4,7 @@
         <v-toolbar :color="boardss.color">
             <v-toolbar-title>{{boardss.name}}</v-toolbar-title>
         </v-toolbar>
-        <cards v-for="(k,i) in boardss.kanbans" :key="i" :isi="k" />
+                <cards v-for="(k,i) in boardss.kanbans" :key="i" :isi="k" />
     </v-card>
 
 

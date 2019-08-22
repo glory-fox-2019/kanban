@@ -58,7 +58,7 @@ export default {
   }),
   methods: {
     getData() {
-      db.collection("kanban").orderBy('createdAt', 'desc')
+      db.collection("kanban")
       .onSnapshot(querySnapshot => {
         let collections = [];
         for (let i = 0; i < this.boards.length; i++) {

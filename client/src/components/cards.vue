@@ -12,33 +12,47 @@
       <v-btn text small @click="changeDoing(isi)">Doing</v-btn>
     </v-card-actions>
     <v-card-actions v-if="isi.status === 'Doing'">
-      <v-btn text small  @click="changeTodo(isi)">To-Do</v-btn>
-      <v-btn text small  @click="deleteItem(isi.id)">Delete</v-btn>
-      <v-btn text small  @click="changeDone(isi)">Done</v-btn>
+      <v-btn text small @click="changeTodo(isi)">To-Do</v-btn>
+      <v-btn text small @click="deleteItem(isi.id)">Delete</v-btn>
+      <v-btn text small @click="changeDone(isi)">Done</v-btn>
     </v-card-actions>
     <v-card-actions v-if="isi.status === 'Done'">
-      <v-btn text small  @click="changeDoing(isi)">Doing</v-btn>
-      <v-btn text small  @click="deleteItem(isi.id)">Delete</v-btn>
+      <v-btn text small @click="changeDoing(isi)">Doing</v-btn>
+      <v-btn text small @click="deleteItem(isi.id)">Delete</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import db from '../../api/firestore'
+import Swal from "sweetalert2";
+import db from "../../api/firestore";
 export default {
   props: ["isi"],
   methods: {
     deleteItem(input) {
       let id = input;
-      db.collection("kanban")
-        .doc(id)
-        .delete()
-        .then(function() {
-          console.log("Document successfully deleted!");
-        })
-        .catch(function(error) {
-          console.error("Error removing document: ", error);
-        });
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(result => {
+        if (result.value) {
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          db.collection("kanban")
+            .doc(id)
+            .delete()
+            .then(function() {
+              console.log("Document successfully deleted!");
+            })
+            .catch(function(error) {
+              console.error("Error removing document: ", error);
+            });
+        }
+      });
     },
     changeBackLog(input) {
       let id = input.id;
