@@ -1,12 +1,17 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link>|
-    <router-link to="/about">About</router-link>
-  </div>
+  <nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Canvan</span>
+    <MyModal/>
+  </nav>
 </template>
 
 <script>
-export default {};
+import MyModal from '../components/MyModal'
+export default {
+  components : {
+    MyModal
+  }
+};
 </script>
 
 <style>

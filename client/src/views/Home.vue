@@ -1,8 +1,7 @@
 <template>
   <div class="home">
    <Navbar></Navbar>
-   <MyModal></MyModal>
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center pt-5">
       <Content
         v-for="status in something"
         :key="status.name"
@@ -23,8 +22,6 @@
 <script>
 // @ is an alias to /src
 import Content from "../components/Content";
-import Button from "../components/Button";
-import MyModal from "../components/MyModal";
 import Navbar from '../components/Navbar'
 import db from "./db";
 
@@ -32,8 +29,6 @@ export default {
   name: "home",
   components: {
     Content,
-    Button,
-    MyModal,
     Navbar
   },
   data() {
