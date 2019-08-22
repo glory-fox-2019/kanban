@@ -34,34 +34,47 @@
 </template>
 
 <script>
-import db from '../api/firebase'
-import firebase from 'firebase'
-  export default {
-    data: () => ({
-      dialog: false,
-      title: '',
-      description: '',
-      assign: ''
-    }),
-    methods: {
-      addData() {
-        db.collection('tasks')
+import db from "../api/firebase";
+import firebase from "firebase";
+import Swal from "sweetalert2"
+export default {
+  data: () => ({
+    dialog: false,
+    title: "",
+    description: "",
+    assign: ""
+  }),
+  methods: {
+    addData() {
+      db.collection("tasks")
         .add({
           title: this.title,
           description: this.description,
           assign: this.assign,
-          status: 'Back-Log',
+          status: "Back-Log",
           createdAt: Date(firebase.database.ServerValue.TIMESTAMP)
         })
         .then(ref => {
-          console.log('Added document with ID: ', ref.id)
-          this.dialog = false
-          this.title = ''
-          this.description = ''
-          this.assign = ''
+          this.dialog = false;
+          this.title = "";
+          this.description = "";
+          this.assign = "";
+          Swal.fire({
+            position: "center",
+            type: "success",
+            title: "Your work has been saved to Back-Log",
+            showConfirmButton: false,
+            timer: 1000
+          });
         })
-        .catch(console.log)
-      }
+        .catch(err => {
+          Swal.fire({
+            type: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
+        });
     }
   }
+};
 </script>

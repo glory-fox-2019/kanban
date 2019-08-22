@@ -32,6 +32,7 @@
 
 <script>
 import db from '../api/firebase'
+import Swal from 'sweetalert2'
 export default {
  props: ['bodyCard'],
  methods: {
@@ -84,11 +85,27 @@ export default {
      },
 
      deleteTask(id) {
-         db.collection("tasks")
-         .doc(id)
-         .delete()
-         .then(() => {
-             console.log('delete success')
+         Swal.fire({
+         title: 'Are you sure?',
+         text: "You won't be able to revert this!",
+         type: 'warning',
+         showCancelButton: true,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         confirmButtonText: 'Yes, delete it!'
+         })
+         .then((result) => {
+          if (result.value) {
+            db.collection("tasks")
+            .doc(id)
+            .delete()
+            .then(() => {
+             Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+                )} 
+            )}
          })
          .catch(console.log())
      }
