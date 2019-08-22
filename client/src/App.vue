@@ -21,8 +21,7 @@
        </v-layout>
      </v-container>
     </v-content>
-    
-    
+
   </v-app>
 </template>
 
@@ -40,23 +39,23 @@ export default {
   methods: {
     getData () {
       db.collection('tasks')
-      .orderBy('createdAt', 'desc')
-      .onSnapshot((querySnapshot) => {
-        for (let i = 0; i < this.titles.length; i++) {
-      this.titles[i].kanbans = []
-        }
-        querySnapshot.forEach((doc) => {
-          if (doc.data().status === 'Back-Log') {
-            this.titles[0].kanbans.push({id: doc.id, ...doc.data()})
-          } else if (doc.data().status === 'To-Do') {
-            this.titles[1].kanbans.push({id: doc.id, ...doc.data()})
-          } else if (doc.data().status === 'Doing') {
-            this.titles[2].kanbans.push({id: doc.id, ...doc.data()})
-          } else if (doc.data().status === 'Done') {
-            this.titles[3].kanbans.push({id: doc.id, ...doc.data()})
+        .orderBy('createdAt', 'desc')
+        .onSnapshot((querySnapshot) => {
+          for (let i = 0; i < this.titles.length; i++) {
+            this.titles[i].kanbans = []
           }
+          querySnapshot.forEach((doc) => {
+            if (doc.data().status === 'Back-Log') {
+              this.titles[0].kanbans.push({ id: doc.id, ...doc.data() })
+            } else if (doc.data().status === 'To-Do') {
+              this.titles[1].kanbans.push({ id: doc.id, ...doc.data() })
+            } else if (doc.data().status === 'Doing') {
+              this.titles[2].kanbans.push({ id: doc.id, ...doc.data() })
+            } else if (doc.data().status === 'Done') {
+              this.titles[3].kanbans.push({ id: doc.id, ...doc.data() })
+            }
+          })
         })
-      })
     }
   },
   data: () => ({
@@ -83,9 +82,9 @@ export default {
       }
     ]
   }),
-  created() {
+  created () {
     this.getData()
   }
-  
-};
+
+}
 </script>

@@ -26,7 +26,7 @@
      <v-btn text @click="updateDoing(bodyCard.id)">Doing</v-btn>
      <v-btn text @click="deleteTask(bodyCard.id)">Delete</v-btn>
    </v-card-actions>
-   
+
  </v-card>
 </template>
 
@@ -34,81 +34,83 @@
 import db from '../api/firebase'
 import Swal from 'sweetalert2'
 export default {
- props: ['bodyCard'],
- methods: {
-     updateBackLog(id) {
-         db.collection("tasks")
-         .doc(id)
-         .update({
-             status: 'Back-Log'
-         })
-         .then(() => {
-             console.log('success')
-         })
-         .catch(console.log)
-     },
+  props: ['bodyCard'],
+  methods: {
+    updateBackLog (id) {
+      db.collection('tasks')
+        .doc(id)
+        .update({
+          status: 'Back-Log'
+        })
+        .then(() => {
+          console.log('success')
+        })
+        .catch(console.log)
+    },
 
-     updateTodo(id) {
-         db.collection("tasks")
-         .doc(id)
-         .update({
-             status: 'To-Do'
-         })
-         .then(() => {
-             console.log('success')
-         })
-         .catch(console.log)
-     },
+    updateTodo (id) {
+      db.collection('tasks')
+        .doc(id)
+        .update({
+          status: 'To-Do'
+        })
+        .then(() => {
+          console.log('success')
+        })
+        .catch(console.log)
+    },
 
-     updateDoing(id) {
-         db.collection("tasks")
-         .doc(id)
-         .update({
-             status: 'Doing'
-         })
-         .then(() => {
-             console.log('success')
-         })
-         .catch(console.log)
-     },
+    updateDoing (id) {
+      db.collection('tasks')
+        .doc(id)
+        .update({
+          status: 'Doing'
+        })
+        .then(() => {
+          console.log('success')
+        })
+        .catch(console.log)
+    },
 
-     updateDone(id) {
-         db.collection("tasks")
-         .doc(id)
-         .update({
-             status: 'Done'
-         })
-         .then(() => {
-             console.log('success')
-         })
-         .catch(console.log)
-     },
+    updateDone (id) {
+      db.collection('tasks')
+        .doc(id)
+        .update({
+          status: 'Done'
+        })
+        .then(() => {
+          console.log('success')
+        })
+        .catch(console.log)
+    },
 
-     deleteTask(id) {
-         Swal.fire({
-         title: 'Are you sure?',
-         text: "You won't be able to revert this!",
-         type: 'warning',
-         showCancelButton: true,
-         confirmButtonColor: '#3085d6',
-         cancelButtonColor: '#d33',
-         confirmButtonText: 'Yes, delete it!'
-         })
-         .then((result) => {
+    deleteTask (id) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      })
+        .then((result) => {
           if (result.value) {
-            db.collection("tasks")
-            .doc(id)
-            .delete()
-            .then(() => {
-             Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-                )} 
-            )}
-         })
-         .catch(console.log())
-     }
- }
+            db.collection('tasks')
+              .doc(id)
+              .delete()
+              .then(() => {
+                Swal.fire(
+                  'Deleted!',
+                  'Your file has been deleted.',
+                  'success'
+                )
+              }
+              )
+          }
+        })
+        .catch(console.log())
+    }
+  }
 }
 </script>
