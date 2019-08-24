@@ -14,6 +14,7 @@
             @updateKanban="getTodos"
         />
     </b-card>
+    
 </b-col>
 </template>
 
@@ -33,6 +34,7 @@ export default {
   },
   methods: {
     getTodos() {
+      this.$emit('loading', true);
       db.collection('kanban').onSnapshot((querySnapshot) => {
         this.todos.length = [];
         querySnapshot.forEach((doc) => {
@@ -40,6 +42,7 @@ export default {
             this.todos.push({ id: doc.id, ...doc.data() });
           }
         });
+        this.$emit('loading', false);
       });
     },
   },

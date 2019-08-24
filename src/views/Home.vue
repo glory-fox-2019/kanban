@@ -7,9 +7,14 @@
           v-for="(board, index) in boards"
           :key="index"
           :board="board"
+          @loading="loadingScreen"
         />
       </b-row>
   </b-container>
+        <div id="loading" v-if="isLoading">
+          <h3>Fetching Data, Please Wait...</h3>
+          <img src="../assets/loading.gif">
+        </div>
 </div>
 </template>
 
@@ -29,7 +34,13 @@ export default {
         { name: 'Doing', color: 'warning', type: 'doing' },
         { name: 'Done', color: 'success', type: 'done' },
       ],
+      isLoading: false,
     };
+  },
+  methods: {
+    loadingScreen(load) {
+      this.isLoading = load;
+    },
   },
   components: {
     Navbar,
@@ -37,3 +48,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  #loading {
+    position: absolute;
+    bottom: 40%;
+    left: 40%;
+  }
+</style>

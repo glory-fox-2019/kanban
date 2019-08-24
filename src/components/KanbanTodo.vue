@@ -69,11 +69,11 @@ export default {
         })
         .then(() => {
             this.detailArray = this.detailArray.filter(el => el.id !== id)
-            Swal.fire(
-                'Deleted!',
-                'Your kanban has been removed.',
-                'success'
-            )
+            // Swal.fire(
+            //     'Deleted!',
+            //     'Your kanban has been removed.',
+            //     'success'
+            // )
         })
         .catch(console.log)
       
