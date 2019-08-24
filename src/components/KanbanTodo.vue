@@ -26,6 +26,7 @@
 <script>
 import draggable from 'vuedraggable';
 import db from '../../apis/firebase.js';
+import Swal from 'sweetalert2'
 
 export default {
   name: 'KanbanTodo',
@@ -52,13 +53,30 @@ export default {
       this.$emit('updateKanban');
     },
     removeKanban(id) {
-      db.collection('kanban').doc(id).delete().then(() => {
-        console.log('Document successfully deleted!');
-        this.detailArray = this.detailArray.filter(el => el.id !== id)
-      })
-        .catch((error) => {
-          console.error('Error removing document: ', error);
-        });
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        })
+        .then((result) => {
+            if (result.value) {
+                return db.collection('kanban').doc(id).delete()
+            }
+        })
+        .then(() => {
+            this.detailArray = this.detailArray.filter(el => el.id !== id)
+            Swal.fire(
+                'Deleted!',
+                'Your kanban has been removed.',
+                'success'
+            )
+        })
+        .catch(console.log)
+      
     },
   },
 };
