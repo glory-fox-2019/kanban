@@ -13,11 +13,16 @@
 //   };
 import * as firebase from 'firebase/app';
 import "firebase/firestore";
-
 firebase.initializeApp({
-    apiKey: 'AIzaSyDzhBszSH_9w9yXAx1YbfQ76lVHXX3-F2A',
-    authDomain: 'kanbansrh.firebaseapp.com',
-    projectId: 'kanbansrh'
+    apiKey: process.env.VUE_APP_apiKey,
+    authDomain: process.env.VUE_APP_authDomain,
+    projectId: process.env.VUE_APP_projectId
 });
 const db = firebase.firestore();
 export default db;
+
+// firebase.initializeApp({
+//     apiKey: 'AIzaSyDzhBszSH_9w9yXAx1YbfQ76lVHXX3-F2A',
+//     authDomain: 'kanbansrh.firebaseapp.com',
+//     projectId: 'kanbansrh'
+// });

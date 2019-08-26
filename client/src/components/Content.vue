@@ -46,7 +46,9 @@ import draggable from "vuedraggable";
 export default {
   props: ["name", "color", "something"],
   created() {
-    db.collection("kanban").onSnapshot(doc => {
+    db.collection("kanban")
+    .orderBy("createdAt" , "desc")
+    .onSnapshot(doc => {
       this.CanbanList = [];
       doc.forEach(el => {
         console.log(el.data().status, this.name, el.id);

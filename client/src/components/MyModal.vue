@@ -47,6 +47,7 @@
 
 <script>
 import db from "../views/db";
+import firebase from 'firebase'
 export default {
   data() {
     return {
@@ -63,6 +64,7 @@ export default {
       db.collection("kanban")
         .add({
           title,
+          createdAt : firebase.firestore.FieldValue.serverTimestamp() ,
           description,
           assigned,
           point,
