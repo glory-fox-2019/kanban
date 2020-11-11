@@ -1,5 +1,7 @@
 # Kanban (realtime kanban app built using Firebase)
 
+This is a simple kanban project built with VueJS as Frontend framework, and using Firebase as a realtime database.
+
 ## Website
 Here's link to the firebase app: [Kanbanana](https://kanbanana-c2410.firebaseapp.com/)
 
